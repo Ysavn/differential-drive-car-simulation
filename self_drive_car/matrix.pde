@@ -28,15 +28,28 @@ float [][] matrixMul(float [][] A, int na, int ma, float [][] B, int nb, int mb)
   return C;
 }
 
-float [][] applyRelu(float [][] A, int n, int m)
+float [][] applyLeakyRelu(float [][] A, int n, int m)
 {
   float[][] C = new float[n][m];
+  float thr = 0.1;
   for(int i=0;i<n;i++)
   {
     for(int j=0;j<m;j++)
     {
-      C[i][j] = max(0, A[i][j]);
+      C[i][j] = max(thr*A[i][j], A[i][j]);
     }
   }
   return C;
+}
+
+void printMatrix(float [][]A, int n, int m)
+{
+  for(int i=0;i<n;i++)
+  {
+    for(int j=0;j<m;j++)
+    {
+      print(A[i][j], " ");
+    }
+    println();
+  }
 }
